@@ -1,37 +1,29 @@
-import axios from 'axios';
+import axios from "axios";
 
-// Create axios instance with base URL
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: "https://excel-analytics-platform-qitq.onrender.com/api",
 });
 
-// Add token to requests if available
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
-// Handle 401 errors (unauthorized) - redirect to login
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      localStorage.removeItem('token');
-      window.location.href = '/login';
+      localStorage.removeItem("token");
+      window.location.href = "/login";
     }
     return Promise.reject(error);
   }
 );
 
 export default api;
-
-
-
