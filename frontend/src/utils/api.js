@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "https://excel-analytics-platform-qitq.onrender.com/api",
+  baseURL: "https://excel-analytics-platform-qitq.onrender.com",
 });
 
 api.interceptors.request.use(
