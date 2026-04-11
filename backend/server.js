@@ -42,6 +42,10 @@ app.use('/api/analysis', analysisRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/ai', aiRoutes);
 
+
+app.get("/", (req, res) => {
+  res.send("Excel Analytics Backend is running 🚀");
+});
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });
