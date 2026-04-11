@@ -31,11 +31,12 @@ function Login() {
       toast.error('Please fill in all fields');
       return;
     }
-    await dispatch(login({ email, password }));
-    if (!error) {
-      navigate('/dashboard');
-    }
-  };
+    
+   const result = await dispatch(login({ email, password }));
+
+if (result.meta.requestStatus === "fulfilled") {
+  navigate("/dashboard");
+}
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
